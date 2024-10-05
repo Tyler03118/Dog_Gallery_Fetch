@@ -1,0 +1,546 @@
+/* =========================
+   CSS Variables
+   ========================= */
+:root {
+  --primary-color: rgb(72, 0, 72);
+  --secondary-color: rgb(243, 173, 61);
+  --accent-color: #b19cd9;
+  --text-color: #333333;
+  --background-color: #f9f9f9;
+  --dark-background: #1e1e1e;
+  --dark-text: #f0f0f0;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --transition-speed: 0.3s;
+}
+
+/* =========================
+   Global Styles
+   ========================= */
+
+html,
+body {
+  min-width: 100%;
+}
+
+body {
+  width: 100%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  overflow-x: hidden;
+}
+
+body.dark-mode {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   Header
+   ========================= */
+header {
+  background-color: var(--primary-color);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background-color: white;
+  border-radius: 15%;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.header-title {
+  color: rgb(243, 173, 61);
+  font-size: 2rem;
+}
+
+header h1 {
+  color: var(--secondary-color);
+  font-size: 2rem;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  background: none;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+/* =========================
+   Breed Selector
+   ========================= */
+.breed-selector {
+  margin: 0;
+  width: 100%;
+  padding: 0.5rem;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.breed-selector h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 10px;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.clear-all-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.clear-all-button {
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color var(--transition-speed);
+  outline: none;
+}
+
+.clear-all-button:hover {
+  color: var(--accent-color);
+}
+
+/* Remove focus visible styles */
+.clear-all-button:focus-visible {
+  outline: none;
+  text-decoration: none;
+}
+
+/* For browsers that support it, we can use :focus-visible 
+   to show a subtle indicator only for keyboard navigation */
+@supports selector(:focus-visible) {
+  .clear-all-button:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .clear-all-button:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+/* Breed List Adjustments */
+.breeds-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 5px;
+}
+
+
+.breed-item {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 2px solid var(--secondary-color);
+  color: var(--primary-color);
+  padding: 0.3rem 0.6rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.breed-item input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid var(--secondary-color);
+  border-radius: 15px;
+  margin-right: 0.5em;
+  outline: none;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.breed-item input[type="checkbox"]:checked {
+  background-color: var(--secondary-color);
+}
+
+.breed-item input[type="checkbox"]:checked::after {
+  content: '\2713';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.breed-item:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   Gallery
+   ========================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+/* Image Card */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.image-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(106, 13, 173, 0.8);
+  color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-top-right-radius: 12px;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+  font-size: 1rem;
+}
+
+.image-card:hover .tooltip {
+  opacity: 1;
+}
+
+/* =========================
+   Selected Info
+   ========================= */
+.selected-info {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* =========================
+   Smooth Transitions
+   ========================= */
+.image-card,
+.breed-item,
+.favorites-toggle,
+.close-button,
+.favorite-button {
+  transition: all var(--transition-speed) ease;
+}
+
+/* =========================
+   Call-to-Action Button
+   ========================= */
+.start-button {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.75rem 2rem;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 30px;
+  color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed), transform var(--transition-speed), color var(--transition-speed);
+}
+
+.start-button:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  color: var(--secondary-color);
+}
+
+.start-button:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* =========================
+   Image Details Modal
+   ========================= */
+.image-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  z-index: 200;
+  animation: fadeIn var(--transition-speed) ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .image-details {
+    width: 95%;
+  }
+}
+
+.image-details .modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.image-details .modal-breed {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.close-button {
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: rgb(243, 173, 61);
+  background: transparent;
+  transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.close-button:hover {
+  color: var(--primary-color);
+  transform: rotate(90deg);
+}
+
+
+
+
+/* =========================
+   Footer Spacing
+   ========================= */
+.read-the-docs {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: color var(--transition-speed);
+}
+
+.read-the-docs a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 2rem;
+}
+
+/* styles.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.image-details-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  /* Increased radius for consistency */
+  position: relative;
+  max-width: 80%;
+  width: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
+  /* Match the modal's radius */
+}
+
+.modal-breed {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.image-details-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centered messages in the Gallery component */
+.gallery-message,
+.error-message {
+  text-align: center;
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.error-message {
+  color: var(--error-color);
+}
+
+/* Dark mode styles */
+.dark-mode .gallery-message,
+.dark-mode .error-message {
+  color: var(--secondary-color);
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+/* Clear All Selection button */
+.clear-all-button {
+  color: var(--primary-color);
+}
+
+body.dark-mode .clear-all-button {
+  color: var(--secondary-color);
+}
+
+/* Selected Breeds text */
+.selected-info {
+  color: var(--primary-color);
+}
+
+body.dark-mode .selected-info {
+  color: var(--secondary-color);
+}
+
+/* Dog API link in footer */
+.read-the-docs a {
+  color: var(--primary-color);
+}
+
+body.dark-mode .read-the-docs a {
+  color: var(--secondary-color);
+}
+
+body.dark-mode .clear-all-button:hover,
+body.dark-mode .read-the-docs a:hover {
+  color: #fff;
+}
